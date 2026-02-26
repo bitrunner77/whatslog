@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WhatsLog Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      color: #111b21;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #667781;
+      font-size: 14px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .card h2 {
+      font-size: 16px;
+      color: #111b21;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e9edef;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #111b21;
+      margin-bottom: 8px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #667781;
+      margin-top: 4px;
+    }
+
+    select, input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d7db;
+      border-radius: 8px;
+      font-size: 14px;
+      background: white;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #00c853;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: #d1d7db;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+
+    .toggle input {
+      display: none;
+    }
+
+    .toggle input:checked + .toggle-switch {
+      background: #00c853;
+    }
+
+    .toggle input:checked + .toggle-switch::after {
+      transform: translateX(20px);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 16px;
+      background: #f0f2f5;
+      border-radius: 8px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 600;
+      color: #00c853;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #667781;
+      margin-top: 4px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #00c853;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #00a344;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #111b21;
+      border: 1px solid #d1d7db;
+    }
+
+    .btn-secondary:hover {
+      background: #f5f6f6;
+    }
+
+    .btn-danger {
+      background: #ff3b30;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #d32f2f;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .message.success {
+      display: block;
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .message.error {
+      display: block;
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .plan-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #00c853;
+      color: white;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .plan-badge.pro {
+      background: #ff9800;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>⚙️ WhatsLog Settings</h1>
+      <p>Configure your export preferences</p>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <div class="card">
+      <h2>📊 Usage Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div id="stat-exports" class="stat-value">0</div>
+          <div class="stat-label">Total Exports</div>
+        </div>
+        <div class="stat-item">
+          <div id="stat-messages" class="stat-value">0</div>
+          <div class="stat-label">Messages</div>
+        </div>
+        <div class="stat-item">
+          <div id="stat-plan" class="stat-value" style="font-size: 14px;">
+            <span class="plan-badge">Free</span>
+          </div>
+          <div class="stat-label">Current Plan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🔧 Export Settings</h2>
+      
+      <div class="form-group">
+        <label for="default-format">Default Export Format</label>
+        <select id="default-format">
+          <option value="csv">CSV File</option>
+          <option value="sheets">Google Sheets</option>
+        </select>
+        <p class="hint">Choose your preferred export method</p>
+      </div>
+
+      <div class="form-group">
+        <label for="max-messages">Max Messages Per Export</label>
+        <input type="number" id="max-messages" min="10" max="5000" value="1000">
+        <p class="hint">Limit the number of messages to export (10-5000)</p>
+      </div>
+
+      <div class="form-group">
+        <label class="toggle">
+          <span>Include Media Information</span>
+          <input type="checkbox" id="include-media" checked>
+          <span class="toggle-switch"></span>
+        </label>
+        <p class="hint">Note: Only metadata (not actual media files) can be exported</p>
+      </div>
+
+      <div class="form-group">
+        <label class="toggle">
+          <span>Auto-extract on Chat Open</span>
+          <input type="checkbox" id="auto-extract">
+          <span class="toggle-switch"></span>
+        </label>
+        <p class="hint">Automatically scan messages when you open a chat</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🔐 Google Account</h2>
+      <p style="margin-bottom: 16px; color: #667781;">
+        Connect your Google account to export directly to Google Sheets.
+      </p>
+      <button id="btn-connect" class="btn btn-primary">
+        Connect Google Account
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>💾 Data Management</h2>
+      <div class="actions">
+        <button id="btn-clear" class="btn btn-secondary">Clear Cache</button>
+        <button id="btn-reset" class="btn btn-danger">Reset All Data</button>
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top: 24px;">
+      <button id="btn-save" class="btn btn-primary">Save Settings</button>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
