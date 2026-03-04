@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1400">
+    <title>Promo Marquee - 1400x560</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1400px;
+            height: 560px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #00c853 0%, #00a344 40%, #008f39 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 80px 100px;
+            z-index: 1;
+        }
+        .left {
+            color: white;
+            max-width: 600px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .icon {
+            font-size: 72px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .tagline {
+            font-size: 28px;
+            opacity: 0.95;
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+        .cta {
+            display: inline-block;
+            background: white;
+            color: #00a344;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .features-bar {
+            display: flex;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .right {
+            display: flex;
+            gap: 24px;
+        }
+        .mockup {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        .mockup.small {
+            width: 200px;
+            transform: translateY(40px);
+        }
+        .mockup.large {
+            width: 260px;
+        }
+        .mockup-header {
+            background: linear-gradient(135deg, #00c853 0%, #00a344 100%);
+            color: white;
+            padding: 16px;
+            text-align: center;
+        }
+        .mockup-header h3 {
+            font-size: 14px;
+        }
+        .mockup-header p {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+        .mockup-content {
+            padding: 16px;
+        }
+        .mockup-stat {
+            background: #f0f2f5;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        .mockup-stat h4 {
+            font-size: 9px;
+            color: #667781;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .mockup-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            padding: 3px 0;
+        }
+        .mockup-label { color: #667781; }
+        .mockup-value { font-weight: 500; color: #111b21; }
+        .mockup-value.green { color: #00c853; }
+        .mockup-btn {
+            background: #00c853;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .decoration {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+        .decoration-1 {
+            width: 500px;
+            height: 500px;
+            top: -150px;
+            right: -100px;
+        }
+        .decoration-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -100px;
+            left: -100px;
+        }
+        .decoration-3 {
+            width: 250px;
+            height: 250px;
+            top: 30%;
+            left: 45%;
+            border-color: rgba(255,255,255,0.05);
+        }
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-pattern"></div>
+    <div class="decoration decoration-1"></div>
+    <div class="decoration decoration-2"></div>
+    <div class="decoration decoration-3"></div>
+    
+    <div class="container">
+        <div class="left">
+            <span class="badge">Chrome Extension</span>
+            <div class="icon">📊</div>
+            <h1>WhatsLog</h1>
+            <p class="tagline">Export WhatsApp conversations to Google Sheets, Excel, or CSV in seconds. Perfect for trainers, freelancers & businesses.</p>
+            <a href="#" class="cta">Get it Free →</a>
+            
+            <div class="features-bar">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <span>One-Click Export</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <span>100% Private</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <span>Google Sheets</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right">
+            <div class="mockup small">
+                <div class="mockup-header">
+                    <h3>WhatsLog</h3>
+                    <p>Export to Sheets</p>
+                </div>
+                <div class="mockup-content">
+                    <div class="mockup-stat">
+                        <h4>Status</h4>
+                        <div class="mockup-row">
+                            <span class="mockup-label">Messages</span>
+                            <span class="mockup-value">156</span>
+                        </div>
+                    </div>
+                    <div class="mockup-btn">Export CSV</div>
+                </div>
+            </div>
+            
+            <div class="mockup large">
+                <div class="mockup-header">
+                    <h3>📊 WhatsLog</h3>
+                    <p>Export WhatsApp to Sheets</p>
+                </div>
+                <div class="mockup-content">
+                    <div class="mockup-stat">
+                        <h4>Current Status</h4>
+                        <div class="mockup-row">
+                            <span class="mockup-label">WhatsApp Web</span>
+                            <span class="mockup-value green">Connected ✓</span>
+                        </div>
+                        <div class="mockup-row">
+                            <span class="mockup-label">Messages</span>
+                            <span class="mockup-value">156 extracted</span>
+                        </div>
+                        <div class="mockup-row">
+                            <span class="mockup-label">Google Auth</span>
+                            <span class="mockup-value green">Connected ✓</span>
+                        </div>
+                    </div>
+                    <div class="mockup-btn">Export to Google Sheets →</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

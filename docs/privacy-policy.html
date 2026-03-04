@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - WhatsLog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #25D366;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+        h2 {
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #25D366;
+            padding-bottom: 8px;
+        }
+        h3 {
+            color: #444;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        ul {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight-box {
+            background: #f0fdf4;
+            border-left: 4px solid #25D366;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .contact {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .contact h3 {
+            margin-top: 0;
+        }
+        a {
+            color: #25D366;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 WhatsLog Privacy Policy</h1>
+        <p class="subtitle">Last updated: March 4, 2026</p>
+
+        <div class="highlight-box">
+            <strong>Summary:</strong> WhatsLog respects your privacy. We do not collect, store, or share your personal data. All processing happens locally in your browser.
+        </div>
+
+        <h2>1. Information We Do NOT Collect</h2>
+        <p>WhatsLog is designed with privacy at its core. We explicitly do NOT collect or store:</p>
+        <ul>
+            <li>Your WhatsApp messages or chat content</li>
+            <li>Your contacts or contact information</li>
+            <li>Your Google account credentials</li>
+            <li>Personal identification information</li>
+            <li>Usage analytics or tracking data</li>
+            <li>IP addresses or location data</li>
+        </ul>
+
+        <h2>2. How WhatsLog Works</h2>
+        <p>WhatsLog operates entirely within your browser using Chrome's extension APIs:</p>
+        <ul>
+            <li><strong>Local Processing:</strong> All message extraction and data processing happens locally on your device</li>
+            <li><strong>No Server Storage:</strong> We do not have any backend servers that store your data</li>
+            <li><strong>Direct Export:</strong> When you export to Google Sheets, data goes directly from your browser to your Google account via Google's official APIs</li>
+            <li><strong>No Third-Party Sharing:</strong> Your data is never shared with any third parties</li>
+        </ul>
+
+        <h2>3. Permissions Explained</h2>
+        <p>WhatsLog requests certain Chrome permissions to function. Here's why each is needed:</p>
+        
+        <h3>web.whatsapp.com Access</h3>
+        <p>Required to inject the export panel into WhatsApp Web interface and extract message data that you choose to export.</p>
+
+        <h3>Google OAuth & Sheets API</h3>
+        <p>Required to authenticate with your Google account and create spreadsheets in your Google Drive when you choose to export to Google Sheets.</p>
+
+        <h3>Storage Permission</h3>
+        <p>Used to save your extension preferences (like default export format) locally in your browser.</p>
+
+        <h3>Downloads Permission</h3>
+        <p>Required to save CSV/Excel files to your computer when you export.</p>
+
+        <h2>4. Data Security</h2>
+        <ul>
+            <li>All data processing occurs within your browser's secure sandbox</li>
+            <li>No data is transmitted to our servers (we don't have any)</li>
+            <li>Google authentication uses industry-standard OAuth 2.0 protocol</li>
+            <li>Export files are saved directly to your chosen location</li>
+        </ul>
+
+        <h2>5. Your Control</h2>
+        <p>You have complete control over your data:</p>
+        <ul>
+            <li>Choose which chats to export</li>
+            <li>Select date ranges for export</li>
+            <li>Delete exported files at any time</li>
+            <li>Revoke Google permissions from your Google Account settings</li>
+            <li>Uninstall the extension to remove all local data</li>
+        </ul>
+
+        <h2>6. Third-Party Services</h2>
+        <p>WhatsLog interacts with the following third-party services on your behalf:</p>
+        <ul>
+            <li><strong>WhatsApp Web:</strong> Owned by Meta. Subject to WhatsApp's Terms of Service.</li>
+            <li><strong>Google Sheets API:</strong> Owned by Google. Subject to Google's Terms of Service and Privacy Policy.</li>
+        </ul>
+
+        <h2>7. Changes to This Policy</h2>
+        <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically.</p>
+
+        <h2>8. Compliance</h2>
+        <p>WhatsLog is designed to comply with:</p>
+        <ul>
+            <li>General Data Protection Regulation (GDPR)</li>
+            <li>California Consumer Privacy Act (CCPA)</li>
+            <li>Chrome Web Store Developer Program Policies</li>
+        </ul>
+
+        <div class="contact">
+            <h3>📧 Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy or WhatsLog's privacy practices, please contact us:</p>
+            <p><strong>Email:</strong> <a href="mailto:support@whatslog.app">support@whatslog.app</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/BitRunner77/whatslog">github.com/BitRunner77/whatslog</a></p>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 WhatsLog. All rights reserved.</p>
+            <p>Built with 🔒 privacy-first principles.</p>
+        </div>
+    </div>
+</body>
+</html>

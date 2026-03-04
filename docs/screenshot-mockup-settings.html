@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280">
+    <title>Screenshot 3 - Settings Page</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            width: 1280px;
+            height: 800px;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #111b21;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: #667781;
+            font-size: 14px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            font-size: 16px;
+            color: #111b21;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e9edef;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f0f2f5;
+            border-radius: 8px;
+        }
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #00c853;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #667781;
+            margin-top: 4px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #111b21;
+            margin-bottom: 8px;
+        }
+        .hint {
+            font-size: 12px;
+            color: #667781;
+            margin-top: 4px;
+        }
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d7db;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+        }
+        .toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #00c853;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transform: translateX(20px);
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #00c853;
+            color: white;
+        }
+        .btn-secondary {
+            background: white;
+            color: #111b21;
+            border: 1px solid #d1d7db;
+        }
+        .btn-danger {
+            background: #ff3b30;
+            color: white;
+        }
+        .actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+        .plan-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #ff9800;
+            color: white;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .google-connect {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .google-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .google-icon {
+            width: 24px;
+            height: 24px;
+            background: #4285f4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚙️ WhatsLog Settings</h1>
+            <p>Configure your export preferences</p>
+        </div>
+
+        <div class="card">
+            <h2>📊 Usage Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">47</div>
+                    <div class="stat-label">Total Exports</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3,284</div>
+                    <div class="stat-label">Messages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" style="font-size: 14px;">
+                        <span class="plan-badge">Pro</span>
+                    </div>
+                    <div class="stat-label">Current Plan</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🔧 Export Settings</h2>
+            
+            <div class="form-group">
+                <label for="default-format">Default Export Format</label>
+                <select id="default-format">
+                    <option value="sheets" selected>Google Sheets</option>
+                    <option value="csv">CSV File</option>
+                    <option value="excel">Excel File</option>
+                </select>
+                <p class="hint">Choose your preferred export method</p>
+            </div>
+
+            <div class="form-group">
+                <label for="max-messages">Max Messages Per Export</label>
+                <input type="number" id="max-messages" value="1000" min="10" max="5000">
+                <p class="hint">Limit the number of messages to export (10-5000)</p>
+            </div>
+
+            <div class="form-group">
+                <label class="toggle">
+                    <span>Include Media Information</span>
+                    <div class="toggle-switch"></div>
+                </label>
+                <p class="hint">Note: Only metadata (not actual media files) can be exported</p>
+            </div>
+
+            <div class="form-group">
+                <label class="toggle">
+                    <span>Auto-extract on Chat Open</span>
+                    <div class="toggle-switch"></div>
+                </label>
+                <p class="hint">Automatically scan messages when you open a chat</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🔐 Google Account</h2>
+            <div class="google-connect">
+                <div class="google-status">
+                    <div class="google-icon">G</div>
+                    <span style="font-size: 14px;">Connected: user@gmail.com</span>
+                </div>
+                <button class="btn btn-secondary">Disconnect</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>💾 Data Management</h2>
+            <div class="actions">
+                <button class="btn btn-secondary">Clear Cache</button>
+                <button class="btn btn-danger">Reset All Data</button>
+            </div>
+        </div>
+
+        <div class="actions" style="margin-top: 24px;">
+            <button class="btn btn-primary">Save Settings</button>
+        </div>
+    </div>
+</body>
+</html>
