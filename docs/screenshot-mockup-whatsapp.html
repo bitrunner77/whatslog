@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280">
+    <title>Screenshot 1 - WhatsApp Web with WhatsLog</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            width: 1280px;
+            height: 800px;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            height: 100%;
+        }
+        /* Left sidebar - Chat list */
+        .sidebar {
+            width: 350px;
+            background: #fff;
+            border-right: 1px solid #d1d7db;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-header {
+            background: #f0f2f5;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dfe5e7;
+        }
+        .search-box {
+            padding: 8px 12px;
+            background: #f0f2f5;
+            margin: 8px 12px;
+            border-radius: 8px;
+            color: #667781;
+            font-size: 14px;
+        }
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+        .chat-item {
+            display: flex;
+            padding: 12px;
+            border-bottom: 1px solid #f0f2f5;
+            cursor: pointer;
+        }
+        .chat-item:hover { background: #f5f6f6; }
+        .chat-item.active { background: #f0f2f5; }
+        .chat-avatar {
+            width: 49px;
+            height: 49px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-right: 12px;
+        }
+        .chat-info {
+            flex: 1;
+        }
+        .chat-name {
+            font-size: 16px;
+            color: #111b21;
+            margin-bottom: 4px;
+        }
+        .chat-preview {
+            font-size: 14px;
+            color: #667781;
+        }
+        .chat-meta {
+            text-align: right;
+        }
+        .chat-time {
+            font-size: 12px;
+            color: #667781;
+        }
+        /* Main chat area */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #efeae2;
+        }
+        .chat-header {
+            background: #f0f2f5;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            border-left: 1px solid #d1d7db;
+        }
+        .chat-title {
+            flex: 1;
+            margin-left: 12px;
+        }
+        .chat-title h3 {
+            font-size: 16px;
+            color: #111b21;
+        }
+        .chat-title p {
+            font-size: 13px;
+            color: #667781;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" opacity="0.03"><rect fill="%23000" width="100%" height="100%"/></svg>');
+        }
+        .message-bubble {
+            max-width: 65%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .message-received {
+            background: white;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+        .message-sent {
+            background: #d9fdd3;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .message-time {
+            font-size: 11px;
+            color: #667781;
+            text-align: right;
+            margin-top: 4px;
+        }
+        .chat-input {
+            background: #f0f2f5;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .input-box {
+            flex: 1;
+            background: white;
+            padding: 10px 16px;
+            border-radius: 20px;
+            margin: 0 10px;
+            color: #667781;
+        }
+        /* WHATSLOG SIDEBAR PANEL */
+        .whatslog-panel {
+            width: 320px;
+            background: white;
+            border-left: 1px solid #d1d7db;
+            display: flex;
+            flex-direction: column;
+        }
+        .whatslog-header {
+            background: linear-gradient(135deg, #00c853 0%, #00a344 100%);
+            color: white;
+            padding: 16px;
+            text-align: center;
+        }
+        .whatslog-header h2 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        .whatslog-header p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .whatslog-content {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+        }
+        .status-card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            border: 1px solid #e9edef;
+        }
+        .status-card h3 {
+            font-size: 12px;
+            color: #667781;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 13px;
+        }
+        .status-label { color: #667781; }
+        .status-value {
+            font-weight: 500;
+            color: #111b21;
+        }
+        .status-value.active { color: #00c853; }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: #00c853;
+            color: white;
+        }
+        .btn-secondary {
+            background: white;
+            color: #111b21;
+            border: 1px solid #d1d7db;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+        }
+        .progress-card {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        .progress-bar {
+            height: 4px;
+            background: #e9edef;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #00c853;
+            width: 75%;
+        }
+        .progress-text {
+            font-size: 12px;
+            color: #667781;
+            margin-top: 8px;
+            text-align: center;
+        }
+        .feature-list {
+            margin-top: 16px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            font-size: 13px;
+            color: #667781;
+        }
+        .feature-item::before {
+            content: "✓";
+            color: #00c853;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="avatar"></div>
+            </div>
+            <div class="search-box">Search or start new chat</div>
+            <div class="chat-list">
+                <div class="chat-item active">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="chat-info">
+                        <div class="chat-name">Personal Training Clients</div>
+                        <div class="chat-preview">Great session today! 💪</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">10:42 AM</div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="chat-info">
+                        <div class="chat-name">Sarah - Yoga Class</div>
+                        <div class="chat-preview">See you tomorrow at 9am</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Yesterday</div>
+                    </div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                    <div class="chat-info">
+                        <div class="chat-name">Mike - Nutrition Plan</div>
+                        <div class="chat-preview">Thanks for the meal prep tips!</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Tuesday</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="chat-area">
+            <div class="chat-header">
+                <div class="avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                <div class="chat-title">
+                    <h3>Personal Training Clients</h3>
+                    <p>online</p>
+                </div>
+            </div>
+            <div class="chat-messages">
+                <div class="message-bubble message-received">
+                    Hi! Can you send me this week's workout schedule?
+                    <div class="message-time">10:30 AM</div>
+                </div>
+                <div class="message-bubble message-sent">
+                    Sure! I've added it to our shared sheet 📊
+                    <div class="message-time">10:35 AM</div>
+                </div>
+                <div class="message-bubble message-received">
+                    Perfect! I'll check my progress from last month too
+                    <div class="message-time">10:38 AM</div>
+                </div>
+                <div class="message-bubble message-sent">
+                    Great session today! 💪 Don't forget to log your meals
+                    <div class="message-time">10:42 AM</div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <span>😊</span>
+                <div class="input-box">Type a message</div>
+                <span>🎤</span>
+            </div>
+        </div>
+
+        <!-- WHATSLOG PANEL -->
+        <div class="whatslog-panel">
+            <div class="whatslog-header">
+                <h2>📊 WhatsLog</h2>
+                <p>Export WhatsApp to Sheets</p>
+            </div>
+            <div class="whatslog-content">
+                <div class="progress-card">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">Extracting messages... 156 found</div>
+                </div>
+
+                <div class="status-card">
+                    <h3>Current Status</h3>
+                    <div class="status-item">
+                        <span class="status-label">WhatsApp Web</span>
+                        <span class="status-value active">Connected ✓</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Messages Extracted</span>
+                        <span class="status-value">156</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Google Auth</span>
+                        <span class="status-value active">Connected ✓</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Current Plan</span>
+                        <span class="status-value">Pro</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary">🔄 Re-extract Chat</button>
+                <button class="btn btn-secondary">📁 Download CSV</button>
+                <button class="btn btn-secondary">📊 Export to Google Sheets</button>
+
+                <div class="feature-list">
+                    <div class="feature-item">One-click export</div>
+                    <div class="feature-item">CSV & Google Sheets support</div>
+                    <div class="feature-item">Auto-categorization</div>
+                    <div class="feature-item">Date range filtering</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
