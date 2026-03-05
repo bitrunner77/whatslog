@@ -7,11 +7,20 @@
     "activeTab",
     "storage",
     "identity",
-    "scripting"
+    "downloads"
   ],
   "host_permissions": [
-    "https://web.whatsapp.com/*"
+    "https://web.whatsapp.com/*",
+    "https://sheets.googleapis.com/*",
+    "https://www.googleapis.com/*"
   ],
+  "oauth2": {
+    "client_id": "296586763801-cm1paimov01aroqm3pj8uguh5advjd95.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/drive.file"
+    ]
+  },
   "content_scripts": [
     {
       "matches": ["https://web.whatsapp.com/*"],
